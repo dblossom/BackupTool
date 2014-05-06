@@ -1,12 +1,14 @@
 package backup;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 
 public class Backup {
 	
 	//folder location hard coded (for now)
-	//delete this line
-	final String FOLDER_DEST = "/home/user/test/";
+	final protected String FOLDER_DEST = "/home/user/test/";
 	
 	public Backup(){}
 	
@@ -21,6 +23,8 @@ public class Backup {
 		args[0] = b.FOLDER_DEST;
 		
 		b.deleteAllFilesFolders(args[0]);
+		
+		b.copyAllFilesFolders("/home/user/Documents", b.FOLDER_DEST);
 	}
 	
 	/**
@@ -48,7 +52,22 @@ public class Backup {
 		file.delete();
 	}
 	
+	/**
+	 * Method moves all files and folders from one location to another
+	 * @param source what to move
+	 * @param destination where to move it.
+	 */
 	protected void copyAllFilesFolders(String source, String destination){
+		
+		File fileSource = new File(source);
+		File fileDestination = new File(destination);
+		
+		try {
+			FileUtils.copyDirectory(fileSource, fileDestination);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
