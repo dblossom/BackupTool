@@ -5,6 +5,7 @@ import java.io.File;
 public class Backup {
 	
 	//folder location hard coded (for now)
+	//delete this line
 	final String FOLDER_DEST = "/home/user/test/";
 	
 	public Backup(){}
